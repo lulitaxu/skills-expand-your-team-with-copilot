@@ -498,6 +498,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Format the schedule using the new helper function
     const formattedSchedule = formatSchedule(details);
+    const shareText = `Check out ${name} at Mergington High School! ${formattedSchedule}`;
+    const shareUrl = window.location.href;
+    const encodedShareText = encodeURIComponent(shareText);
+    const encodedShareUrl = encodeURIComponent(shareUrl);
 
     // Create activity tag
     const tagHtml = `
@@ -568,6 +572,32 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `
         }
+      </div>
+      <div class="share-buttons">
+        <a
+          class="share-button"
+          href="https://twitter.com/intent/tweet?text=${encodedShareText}&url=${encodedShareUrl}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Share on X
+        </a>
+        <a
+          class="share-button"
+          href="https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Share on Facebook
+        </a>
+        <a
+          class="share-button"
+          href="mailto:?subject=${encodeURIComponent(
+            `Activity Recommendation: ${name}`
+          )}&body=${encodedShareText}%0A%0A${encodedShareUrl}"
+        >
+          Share by Email
+        </a>
       </div>
     `;
 
